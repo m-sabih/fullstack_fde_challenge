@@ -13,7 +13,7 @@
       "confidence": 0.51,
       "needs_review": true,
       "flags": [],
-      "note": "Changed from 3 HP to 5 HP per Rick Dawson's email."
+      "note": "Changed from 3 HP to 5 HP per Rick's email."
     },
     {
       "line": 2,
@@ -25,7 +25,7 @@
       "confidence": 0.77,
       "needs_review": true,
       "flags": [],
-      "note": "Quantity increased from 20 to 40 per Rick Dawson's email."
+      "note": "Quantity increased from 20 to 40 per Rick's email."
     },
     {
       "line": 3,
