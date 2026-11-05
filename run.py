@@ -14,11 +14,13 @@ NON_BLOCKING_FLAGS = {"unit_from_catalog"}
 
 def build_draft(path: Path) -> dict:
     rfq, numbered = extract(path)
-    customer, customer_flags = resolve_customer(rfq.customer_name)
+    customer, _ = resolve_customer(rfq.customer_name)
     lines = []
     for number, line in numbered:
         if "extraction_failed" in line.flags:
             part_number, method, confidence, unit, match_flags, match_note = None, None, 0.0, None, ["stub"], None
+        elif "needs_human_review" in line.flags:
+            part_number, method, confidence, unit, match_flags, match_note = None, None, 0.0, line.unit, [], None
         else:
             part_number, method, confidence, unit, match_flags, match_note = match_line(line)
         flags = [f for f in line.flags if f != "needs_review" and not (f == "missing_unit" and unit)] + match_flags
@@ -39,7 +41,6 @@ def build_draft(path: Path) -> dict:
         "rfq_id": path.stem,
         "customer_id": customer["customer_id"] if customer else None,
         "customer_name": rfq.customer_name,
-        "flags": customer_flags,
         "lines": lines,
         "non_item_rows": rfq.non_item_rows,
     }

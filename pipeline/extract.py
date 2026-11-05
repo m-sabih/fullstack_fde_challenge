@@ -28,7 +28,7 @@ Rules:
 - description is the full item text without quantity and unit, keeping every size, spec, material, grade and style word (e.g. "6204-2RS sealed ball bearing", "1/2-13 x 2 in grade 8 hex bolt"). If a line refers to another line (e.g. "same as above but 1/2\""), write out the complete resulting description.
 - unit is the unit the RFQ states, as EA (each), BX (box), PK (pack), CS (case), RL (roll), PR (pair) or FT (foot). Never convert between units. If the stated unit is none of these, leave unit null, add the flag "unknown_unit" and put the stated unit in note.
 - In forwarded chains, apply the later edits and record each change in note.
-- Never guess a quantity or unit. If it is not explicit, leave it null and add the flag "missing_quantity" or "missing_unit".
+- Never guess a quantity or unit. If it is not explicit, leave it null and add the flag "missing_quantity" or "missing_unit". A hint is not a unit: for "300 (we usually get boxes)" leave unit null, add "missing_unit" and quote the hint in note.
 - If a line refers to a previous order (e.g. "same as last order"), add the flag "needs_human_review".
 - non_item_rows holds only rows inside the item list or table that are not items (shipping, delivery, totals, comments). Ignore greetings, signatures and email headers.
 - Never output prices."""
@@ -115,7 +115,10 @@ def resolve_customer(name: str | None) -> tuple[dict[str, str] | None, list[str]
 def extract(path: str | Path) -> tuple[ExtractedRFQ, list[tuple[int, ExtractedLine]]]:
     """Extract an RFQ. Line numbers come from enumerate, never from the model, so a skipped number can't misalign lines."""
     path = Path(path)
-    content, source_text = load_source(path)
+    try:
+        content, source_text = load_source(path)
+    except ValueError as exc:
+        return _failed(str(exc))
     try:
         rfq = _generate([PROMPT, content]).parsed
     except errors.APIError as exc:

@@ -1,0 +1,83 @@
+{
+  "rfq_id": "rfq_04_handwritten",
+  "customer_id": "C1004",
+  "customer_name": "Kowalski Machine",
+  "lines": [
+    {
+      "line": 1,
+      "as_written": "6205 2RS brgs x 30",
+      "quantity": 30,
+      "unit": "EA",
+      "ridgeline_part_number": "RL104165",
+      "match_method": "description",
+      "confidence": 0.59,
+      "needs_review": true,
+      "flags": [
+        "source_photo"
+      ],
+      "note": null
+    },
+    {
+      "line": 2,
+      "as_written": "A48 belts x 8",
+      "quantity": 8,
+      "unit": "EA",
+      "ridgeline_part_number": "RL134671",
+      "match_method": "description",
+      "confidence": 0.68,
+      "needs_review": true,
+      "flags": [
+        "source_photo"
+      ],
+      "note": null
+    },
+    {
+      "line": 3,
+      "as_written": "#40 chain 10ft x 2 bx",
+      "quantity": 2,
+      "unit": "BX",
+      "ridgeline_part_number": "RL159429",
+      "match_method": "description",
+      "confidence": 0.85,
+      "needs_review": true,
+      "flags": [
+        "source_photo"
+      ],
+      "note": null
+    },
+    {
+      "line": 4,
+      "as_written": "3/8 push-in elbows x 50",
+      "quantity": 50,
+      "unit": "EA",
+      "ridgeline_part_number": "RL177128",
+      "match_method": "description",
+      "confidence": 0.77,
+      "needs_review": true,
+      "flags": [
+        "source_photo"
+      ],
+      "note": null
+    },
+    {
+      "line": 5,
+      "as_written": "grease - the usual",
+      "quantity": null,
+      "unit": null,
+      "ridgeline_part_number": null,
+      "match_method": null,
+      "confidence": 0.0,
+      "needs_review": true,
+      "flags": [
+        "missing_quantity",
+        "missing_unit",
+        "needs_human_review",
+        "source_photo"
+      ],
+      "note": "the usual"
+    }
+  ],
+  "non_item_rows": [
+    "thx! need by Thurs"
+  ]
+}
